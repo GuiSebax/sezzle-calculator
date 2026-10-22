@@ -1,0 +1,42 @@
+.panel {
+  min-height: 4.5rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: var(--color-surface-muted);
+  display: flex;
+  align-items: center;
+}
+
+.panel p {
+  margin: 0;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.success {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+.expression {
+  color: var(--color-text-muted);
+}
+
+.result {
+  font-size: 1.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.error {
+  color: var(--color-danger);
+}
+
+.error p {
+  margin-top: 0.25rem;
+}

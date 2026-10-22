@@ -23,3 +23,20 @@ Backend requirements:
 8. A Makefile with: run, test, coverage (generating coverage.out and an HTML report).
 
 Keep the code idiomatic and small. After you finish, explain each design decision in a few sentences, because I'll need to defend them in an interview. Don't create the README yet.
+
+## Step 2 - Frontend
+
+Now build the frontend in /frontend. The backend in /backend is done and exposes POST /api/v1/calculate/{operation} (add, subtract, multiply, divide, power, sqrt, percentage) with body {"a": number, "b": number} (sqrt only uses "a"). It returns {"operation": string, "result": number} on success and {"error": string} on failure (400 for invalid input, 422 for math errors). Read the backend code first to confirm the contract.
+
+Requirements:
+
+1. Vite + React + TypeScript (strict mode). No UI library; plain CSS or CSS modules. Keep dependencies minimal.
+2. A small typed API client module (src/api) that calls the backend, maps error responses to typed errors, and reads the base URL from VITE_API_URL (default http://localhost:8080). Components must not call fetch directly.
+3. UI: two number inputs, an operation selector, a Calculate button, and a result area. When the operation is sqrt, hide or disable the second input. Show a loading state while the request is in flight.
+4. Input validation on the client: required fields, valid numbers, and a clear inline message. Disable the button while invalid. Still rely on the backend as the source of truth and display its error messages clearly.
+5. Handle network errors (backend down) with a friendly message.
+6. Responsive layout that works well on mobile (basic support), accessible labels, and keyboard submit with Enter.
+7. Unit tests with Vitest and React Testing Library: the API client (mocking fetch) and the main component (valid calculation, validation message, backend error, sqrt hiding the second input). Add a coverage script.
+8. npm scripts: dev, build, test, coverage.
+
+Keep components small and the code idiomatic. After finishing, explain the main design decisions briefly so I can defend them in an interview. Don't create Docker files or the README yet.
