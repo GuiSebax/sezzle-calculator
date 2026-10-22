@@ -40,3 +40,28 @@ Requirements:
 8. npm scripts: dev, build, test, coverage.
 
 Keep components small and the code idiomatic. After finishing, explain the main design decisions briefly so I can defend them in an interview. Don't create Docker files or the README yet.
+
+## Step 3 - Docker and documentation
+
+Final step. The Go backend (/backend, entry point in cmd/server) and the React + TypeScript frontend (/frontend) are done and tested. Read both projects first.
+
+1. Docker:
+   - backend/Dockerfile: multi-stage build (golang image to build, small final image such as distroless or alpine), running as a non-root user.
+   - frontend/Dockerfile: multi-stage build (node to build, nginx to serve the static files).
+   - docker-compose.yml at the root running both. The frontend must reach the backend correctly (configure VITE_API_URL at build time or proxy /api through nginx, and explain the choice). Backend CORS must allow the frontend origin.
+   - Add .dockerignore files.
+2. Coverage report: make sure both layers can generate a coverage report with a single command, and add the generated report folders to .gitignore. Add a short "Test coverage" section to the README with the current numbers (backend: run go test ./... -cover to get them; frontend: 45 tests, ~98% statements).
+3. README.md at the root, in clear English, with:
+   - Overview of the project
+   - Tech stack
+   - Project structure
+   - Setup and how to run (with Docker Compose, and locally without Docker for both backend and frontend)
+   - How to run tests and coverage
+   - API documentation: endpoints, request/response examples with curl, status codes (200, 400, 422), and error format
+   - Design decisions and trade-offs (separation of the pure calculator package from the HTTP layer, one endpoint per operation, 400 vs 422, standard library only, typed API client in the frontend, client-side validation with the backend as source of truth, etc.)
+   - Assumptions (for example, how percentage and sqrt are interpreted)
+   - Possible improvements with more time
+   - A note that AI tooling was used, pointing to PROMPTS.md
+4. Make sure .gitignore covers node_modules, build outputs, and coverage files.
+
+Keep the README concise and well organized. Don't change application behavior.

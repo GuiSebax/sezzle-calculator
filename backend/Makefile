@@ -6,7 +6,9 @@ run:
 test:
 	go test ./...
 
+# Writes coverage/coverage.out and an HTML report at coverage/index.html.
 coverage:
-	go test -coverprofile=coverage.out ./...
-	go tool cover -func=coverage.out
-	go tool cover -html=coverage.out -o coverage.html
+	mkdir -p coverage
+	go test -coverprofile=coverage/coverage.out ./...
+	go tool cover -func=coverage/coverage.out
+	go tool cover -html=coverage/coverage.out -o coverage/index.html

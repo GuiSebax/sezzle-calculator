@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+backend/server
+*.exe
+
+# Coverage reports
+coverage/
+coverage.out
+coverage.html
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
