@@ -65,3 +65,7 @@ Final step. The Go backend (/backend, entry point in cmd/server) and the React +
 4. Make sure .gitignore covers node_modules, build outputs, and coverage files.
 
 Keep the README concise and well organized. Don't change application behavior.
+
+## Step 4 - Coverage section
+
+Add a short "Test coverage" section to the README with the current numbers: backend calculator package 100%, API package 96.8% (cmd/server is only wiring), frontend 45 tests with ~98% statement coverage.
